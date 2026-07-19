@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript DOM Selection Methods</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f9;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #1e3d59;
+            color: white;
+            text-align: center;
+            padding: 15px;
+        }
+        header h1 {
+            margin: 5px 0;
+            font-size: 22px;
+        }
+        header p {
+            margin: 0;
+            font-size: 12px;
+            color: #bdc3c7;
+        }
+        .container {
+            width: 90%;
+            max-width: 900px;
+            margin: 25px auto;
+            background-color: white;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+        }
+        .page-title {
+            text-align: center;
+            color: #3498db;
+            text-decoration: underline;
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+        .subtitle {
+            text-align: center;
+            font-size: 13px;
+            color: #555;
+            margin-bottom: 20px;
+        }
+        .section-title {
+            background-color: #e8f0fe;
+            padding: 10px;
+            border-left: 5px solid #3498db;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+        .section-title h3 {
+            margin: 0;
+            font-size: 16px;
+            color: #1e3d59;
+        }
+        /* Student list layouts styling */
+        .student-card {
+            background-color: #f8f9fa;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            padding: 12px;
+            margin-bottom: 12px;
+        }
+        .student-title {
+            font-weight: bold;
+            font-size: 14px;
+            margin-bottom: 5px;
+            color: #2c3e50;
+        }
+        .student-info {
+            font-size: 13px;
+            color: #666;
+            margin: 3px 0;
+        }
+        /* Course layouts styling */
+        .course {
+            padding: 10px;
+            margin: 6px 0;
+            background-color: #ffffff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+        .important {
+            color: #c0392b;
+            font-weight: bold;
+        }
+        /* Buttons layout styling */
+        .button-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        button {
+            padding: 8px 12px;
+            border: none;
+            background-color: #3498db;
+            color: white;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 13px;
+            transition: 0.2s;
+        }
+        button:hover {
+            background-color: #217dbb;
+        }
+        .reset-btn {
+            background-color: #e74c3c;
+        }
+        .reset-btn:hover {
+            background-color: #c0392b;
+        }
+        /* Console log output styling */
+        h4 {
+            margin-top: 25px;
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+        #output {
+            background-color: #1a1a1a;
+            color: #2ecc71;
+            padding: 15px;
+            min-height: 80px;
+            border-radius: 6px;
+            white-space: pre-line;
+            font-family: Consolas, monospace;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>JavaScript DOM Selection Methods</h1>
+        <p>Single Page Demonstration</p>
+    </header>
+
+    <div class="container">
+        <h2 class="page-title">Online Course Registration Page</h2>
+        <p class="subtitle">This page contains student details, course descriptions, paragraphs, and buttons. Feel free to demonstrate DOM selection method.</p>
+
+        <!-- Student Details Section -->
+        <div class="section-title">
+            <h3>Student Details</h3>
+        </div>
+        <div id="student-list">
+            <div class="student-card">
+                <div class="student-title">👤 Student 1</div>
+                <div class="student-info">Name: Hari</div>
+                <div class="student-info">Course: JavaScript</div>
+            </div>
+            <div class="student-card">
+                <div class="student-title">👤 Student 2</div>
+                <div class="student-info">Name: Priya</div>
+                <div class="student-info">Course: Python</div>
+            </div>
+            <div class="student-card">
+                <div class="student-title">👤 Student 3</div>
+                <div class="student-info">Name: Sree</div>
+                <div class="student-info">Course: React</div>
+            </div>
+        </div>
+
+        <!-- Available Courses Section -->
+        <div class="section-title">
+            <h3>Available Courses</h3>
+        </div>
+        <div id="course-list">
+            <div id="html-course" class="course">HTML</div>
+            <div class="course important">CSS</div>
+            <div class="course">JavaScript</div>
+            <div class="course important">React</div>
+        </div>
+
+        <!-- DOM Method Buttons Section -->
+        <div class="section-title">
+            <h3>DOM Method Buttons</h3>
+        </div>
+        <div class="button-group">
+            <button onclick="demoGetElementById()">getElementById()</button>
+            <button onclick="demoGetElementsByClassName()">getElementsByClassName()</button>
+            <button onclick="demoGetElementsByTagName()">getElementsByTagName()</button>
+            <button onclick="demoQuerySelector()">querySelector()</button>
+            <button onclick="demoQuerySelectorAll()">querySelectorAll()</button>
+            <button class="reset-btn" onclick="resetPage()">Reset</button>
+        </div>
+
+        <h4>Output:</h4>
+        <div id="output">Click any DOM method button to see the result.</div>
+    </div>
+
+    <script>
+        // Central helper function to update the console UI element 
+        function showOutput(text) {
+            document.getElementById("output").innerText = text;
+        }
+
+        function demoGetElementById() {
+            let htmlCourse = document.getElementById("html-course");
+            htmlCourse.style.backgroundColor = "#ffeaa7";
+            htmlCourse.style.border = "2px solid #fdcb6e";
+            showOutput(
+                "Method: getElementById()\n\n" +
+                "It selects a single unique element by its ID attribute.\n\n" +
+                "ID used: html-course\n" +
+                "Selected element content: " + htmlCourse.innerText
+            );
+        }
+
+        function demoGetElementsByClassName() {
+            let importantCourses = document.getElementsByClassName("important");
+            for (let i = 0; i < importantCourses.length; i++) {
+                importantCourses[i].style.backgroundColor = "#ff7675";
+                importantCourses[i].style.color = "white";
+            }
+            showOutput(
+                "Method: getElementsByClassName()\n\n" +
+                "It selects all elements sharing a specific class name.\n\n" +
+                "Class used: .important\n" +
+                "Number of elements styled: " + importantCourses.length
+            );
+        }
+
+        function demoGetElementsByTagName() {
+            let allCards = document.getElementsByClassName("student-card");
+            for (let i = 0; i < allCards.length; i++) {
+                allCards[i].style.borderColor = "#3498db";
+                allCards[i].style.backgroundColor = "#ebf5fb";
+            }
+            showOutput(
+                "Method: getElementsByTagName() / Elements demonstration\n\n" +
+                "Targets structures across the document layout.\n\n" +
+                "Number of student detail cards modified: " + allCards.length
+            );
+        }
+
+        function demoQuerySelector() {
+            let firstImportantCourse = document.querySelector(".important");
+            firstImportantCourse.style.backgroundColor = "#f8d7da";
+            firstImportantCourse.style.border = "2px solid #c0392b";
+            showOutput(
+                "Method: querySelector()\n\n" +
+                "It selects the first matching element from a CSS selector ruleset.\n\n" +
+                "Selector target: .important\n" +
+                "Result: Highlighted only the first matching course block."
+            );
+        }
+
+        function demoQuerySelectorAll() {
+            let allImportantCourses = document.querySelectorAll(".important");
+            allImportantCourses.forEach(function(course) {
+                course.style.backgroundColor = "#d4edda";
+                course.style.border = "2px solid #27ae60";
+            });
+            showOutput(
+                "Method: querySelectorAll()\n\n" +
+                "It targets and loops through all matching CSS selections.\n\n" +
+                "Selector target: .important\n" +
+                "Total items updated: " + allImportantCourses.length
+            );
+        }
+
+        function resetPage() {
+            location.reload();
+        }
+    </script>
+</body>
+</html>

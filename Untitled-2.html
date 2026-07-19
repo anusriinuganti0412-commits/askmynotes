@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript DOM Selection Methods</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1 id="mainTitle">JavaScript DOM Selection Methods</h1>
+        <p>Single Page Demonstration</p>
+    </header>
+
+    <div class="container">
+
+        <div class="title-box">
+            <h2 id="courseTitle">Online Course Registration Page</h2>
+        </div>
+
+        <p>
+            This page contains student cards, course names, paragraphs, and buttons.
+            Each button demonstrates one DOM selection method.
+        </p>
+
+        <h2 class="section-title">Student Details</h2>
+
+        <div class="student-card">
+            <h3>Student 1</h3>
+            <p class="student">Name: Ravi</p>
+            <p class="course">Course: JavaScript</p>
+        </div>
+
+        <div class="student-card">
+            <h3>Student 2</h3>
+            <p class="student">Name: Priya</p>
+            <p class="course">Course: Python</p>
+        </div>
+
+        <div class="student-card">
+            <h3>Student 3</h3>
+            <p class="student">Name: Aman</p>
+            <p class="course">Course: Java</p>
+        </div>
+
+        <h2 class="section-title">Available Courses</h2>
+
+        <ul id="courseList">
+            <li>HTML</li>
+            <li class="important">CSS</li>
+            <li>JavaScript</li>
+            <li class="important">React</li>
+        </ul>
+
+        <h2 class="section-title">DOM Method Buttons</h2>
+
+        <div class="buttons">
+
+            <button onclick="demoGetElementById()">
+                getElementById()
+            </button>
+
+            <button onclick="demoGetElementsByClassName()">
+                getElementsByClassName()
+            </button>
+
+            <button onclick="demoGetElementsByTagName()">
+                getElementsByTagName()
+            </button>
+
+            <button onclick="demoQuerySelector()">
+                querySelector()
+            </button>
+
+            <button onclick="demoQuerySelectorAll()">
+                querySelectorAll()
+            </button>
+
+            <button class="reset" onclick="resetPage()">
+                Reset
+            </button>
+
+        </div>
+
+        <h2>Output:</h2>
+
+        <div id="output">
+            Click any button to see the result here.
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
